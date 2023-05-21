@@ -1,6 +1,8 @@
-﻿namespace Infraestructure;
+﻿using Infraestructure.Models;
+
+namespace Infraestructure;
 
 public interface IReservationInfraestructure
 {
-   public IEnumerable<string> GetAll();
+   List<Reservation> GetAll();
 }

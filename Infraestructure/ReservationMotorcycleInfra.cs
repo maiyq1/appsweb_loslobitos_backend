@@ -1,9 +1,18 @@
-﻿namespace Infraestructure;
+﻿using Infraestructure.Context;
+using Infraestructure.Models;
+
+namespace Infraestructure;
 
 public class ReservationMotorcycleInfra : IReservationInfraestructure
 {
-    public IEnumerable<string> GetAll()
+    private GeniusDBContext _geniusDbContext;
+
+    public ReservationMotorcycleInfra(GeniusDBContext geniusDbContext)
     {
-        return new string[] {"Indian Scout", "Vespa"};
+        _geniusDbContext = geniusDbContext;
+    }
+    public List<Reservation> GetAll()
+    {
+        return _geniusDbContext.Reservations.ToList();
     }
 }

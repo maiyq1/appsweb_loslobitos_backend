@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain;
 using Infraestructure;
+using Infraestructure.Context;
+using Infraestructure.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,18 +15,17 @@ namespace API.Controllers
     [ApiController]
     public class GeniusController : ControllerBase
     {
-        private IReservationDomain _reservationDomain;
+        private IReservationInfraestructure _reservationInfraestructure;
 
-        public GeniusController(IReservationDomain reservationDomain)
+        public GeniusController(IReservationInfraestructure reservationInfraestructure)
         {
-            _reservationDomain = reservationDomain;
+            _reservationInfraestructure = reservationInfraestructure;
         }
         // GET: api/Genius
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Reservation> Get()
         {
-            return _reservationDomain.GetAll();
-            //return new string[] { "value1", "value2" };
+            return _reservationInfraestructure.GetAll();
         }
 
         // GET: api/Genius/5
