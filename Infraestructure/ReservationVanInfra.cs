@@ -15,4 +15,21 @@ public class ReservationVanInfra : IReservationInfraestructure
     {
         return _geniusDbContext.Reservations.ToList();
     }
+
+    public bool Create(string placa)
+    {
+        try
+        {
+            Reservation reservation = new Reservation();
+            reservation.Placa = placa;
+            _geniusDbContext.Reservations.Add(reservation);
+            _geniusDbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+    }
 }

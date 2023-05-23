@@ -16,10 +16,12 @@ namespace API.Controllers
     public class GeniusController : ControllerBase
     {
         private IReservationInfraestructure _reservationInfraestructure;
+        private IReservationDomain _reservationDomain;
 
-        public GeniusController(IReservationInfraestructure reservationInfraestructure)
+        public GeniusController(IReservationInfraestructure reservationInfraestructure, IReservationDomain reservationDomain)
         {
             _reservationInfraestructure = reservationInfraestructure;
+            _reservationDomain = reservationDomain;
         }
         // GET: api/Genius
         [HttpGet]
@@ -35,10 +37,11 @@ namespace API.Controllers
             return "value";
         }
 
-        // POST: api/Genius
+        // POST (CREATE): api/Genius
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            _reservationDomain.Create(value);
         }
 
         // PUT: api/Genius/5

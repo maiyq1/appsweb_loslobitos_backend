@@ -5,4 +5,5 @@ namespace Infraestructure;
 public interface IReservationInfraestructure
 {
    List<Reservation> GetAll();
+   bool Create(string placa);
 }

@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 //My Custom
 builder.Services.AddScoped<IReservationInfraestructure, ReservationVanInfra>();
+builder.Services.AddScoped<IReservationDomain, ReservationDomain>();
 
 //MySQL Connection
 var connectionString = builder.Configuration.GetConnectionString("geniusConnection");

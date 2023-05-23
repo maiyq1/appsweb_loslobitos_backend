@@ -1,6 +1,9 @@
-﻿namespace Domain;
+﻿using Infraestructure.Models;
+
+namespace Domain;
 
 public interface IReservationDomain
 {
-   public IEnumerable<string> GetAll();
+   List<Reservation> GetAll();
+   bool Create(string name);
 }
