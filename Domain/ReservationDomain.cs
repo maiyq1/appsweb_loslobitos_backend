@@ -1,5 +1,6 @@
 ﻿using Infraestructure;
 using Infraestructure.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace Domain;
 
@@ -21,5 +22,10 @@ public class ReservationDomain : IReservationDomain
         //Reglas de negocio
         if (name.Length != 7) throw new Exception("deben ser 7 caracteres");
         return _reservationInfraestructure.Create(name);
+    }
+
+    public bool Update(int id, string name)
+    {
+        return _reservationInfraestructure.Update(id, name);
     }
 }

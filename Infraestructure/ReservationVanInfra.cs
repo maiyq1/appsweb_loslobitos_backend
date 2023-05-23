@@ -1,4 +1,5 @@
-﻿using Infraestructure.Context;
+﻿using System.ComponentModel.DataAnnotations;
+using Infraestructure.Context;
 using Infraestructure.Models;
 
 namespace Infraestructure;
@@ -23,6 +24,24 @@ public class ReservationVanInfra : IReservationInfraestructure
             Reservation reservation = new Reservation();
             reservation.Placa = placa;
             _geniusDbContext.Reservations.Add(reservation);
+            _geniusDbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+    }
+
+    public bool Update(int id, string placa)
+    {
+        try
+        {
+            var reservation = _geniusDbContext.Reservations.Find(id); //Encontrar el item
+            reservation.Placa = placa; //Modificar
+            _geniusDbContext.Reservations.Update(reservation); //Actualizar
+
             _geniusDbContext.SaveChanges();
             return true;
         }

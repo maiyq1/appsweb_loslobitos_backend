@@ -32,4 +32,9 @@ public class ReservationMotorcycleInfra : IReservationInfraestructure
             return false;
         }
     }
+
+    public bool Update(int id, string name)
+    {
+        throw new NotImplementedException();
+    }
 }

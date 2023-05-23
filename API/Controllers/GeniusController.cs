@@ -48,6 +48,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            _reservationDomain.Update(id, value);
         }
 
         // DELETE: api/Genius/5
