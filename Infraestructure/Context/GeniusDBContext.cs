@@ -37,13 +37,13 @@ public class GeniusDBContext : DbContext
         builder.Entity<Client>().HasKey(p => p.Id);
         builder.Entity<Client>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Client>().Property(c => c.Name).IsRequired().HasMaxLength(30);
-        builder.Entity<Client>().Property(t => t.Phone).IsRequired().HasMaxLength(9);
+        builder.Entity<Client>().Property(t => t.Phone).HasMaxLength(9);
         builder.Entity<Client>().Property(e => e.Email).HasMaxLength(50);
 
         builder.Entity<Reservation>().ToTable("Reservations");
         builder.Entity<Reservation>().HasKey(p => p.Id);
         builder.Entity<Reservation>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Reservation>().Property(c => c.Placa).IsRequired().HasMaxLength(7);
+        builder.Entity<Reservation>().Property(c => c.Placa).HasMaxLength(7);
         builder.Entity<Reservation>().Property(d => d.Place).HasMaxLength(10);
         builder.Entity<Reservation>().Property(b => b.isPaid);
         builder.Entity<Client>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();

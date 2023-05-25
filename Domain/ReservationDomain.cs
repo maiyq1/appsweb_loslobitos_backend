@@ -28,4 +28,9 @@ public class ReservationDomain : IReservationDomain
     {
         return _reservationInfraestructure.Update(id, name);
     }
+
+    public bool Delete(int id)
+    {
+        return _reservationInfraestructure.Delete(id);
+    }
 }

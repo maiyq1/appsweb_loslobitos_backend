@@ -51,4 +51,13 @@ public class ReservationVanInfra : IReservationInfraestructure
             return false;
         }
     }
+
+    public bool Delete(int id)
+    {
+        var reservation = _geniusDbContext.Reservations.Find(id);
+        reservation.isActive = false;
+        _geniusDbContext.Reservations.Update(reservation);
+        _geniusDbContext.SaveChanges();
+        return true;
+    }
 }

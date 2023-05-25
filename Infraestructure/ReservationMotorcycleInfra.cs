@@ -37,4 +37,9 @@ public class ReservationMotorcycleInfra : IReservationInfraestructure
     {
         throw new NotImplementedException();
     }
+
+    public bool Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
