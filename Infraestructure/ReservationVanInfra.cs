@@ -17,12 +17,20 @@ public class ReservationVanInfra : IReservationInfraestructure
         return _geniusDbContext.Reservations.ToList();
     }
 
-    public bool Create(string placa)
+    public List<Reservation> GetByPlace(string place)
+    {
+        return _geniusDbContext.Reservations.Where(reserv => reserv.isActive && reserv.Place.Contains(place)).ToList();
+    }
+
+    public Reservation GetById(int id)
+    {
+        return _geniusDbContext.Reservations.Single(reserv => reserv.isActive && reserv.Id == id);
+    }
+
+    public bool Create(Reservation reservation)
     {
         try
         {
-            Reservation reservation = new Reservation();
-            reservation.Placa = placa;
             _geniusDbContext.Reservations.Add(reservation);
             _geniusDbContext.SaveChanges();
             return true;
@@ -34,15 +42,29 @@ public class ReservationVanInfra : IReservationInfraestructure
         }
     }
 
-    public bool Update(int id, string placa)
+    public bool Update(int id, Reservation input)
     {
         try
         {
-            var reservation = _geniusDbContext.Reservations.Find(id); //Encontrar el item
-            reservation.Placa = placa; //Modificar
-            _geniusDbContext.Reservations.Update(reservation); //Actualizar
+            using (var transaction = _geniusDbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var reservation = _geniusDbContext.Reservations.Find(id);
+                    reservation.Place = input.Place;
+                    reservation.Placa = input.Placa;
+                    reservation.isPaid = input.isPaid;
 
-            _geniusDbContext.SaveChanges();
+                    _geniusDbContext.Reservations.Update(reservation);
+                    _geniusDbContext.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                }
+            }
+
             return true;
         }
         catch (Exception e)

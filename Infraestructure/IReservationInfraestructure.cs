@@ -5,7 +5,9 @@ namespace Infraestructure;
 public interface IReservationInfraestructure
 {
    List<Reservation> GetAll();
-   bool Create(string placa);
-   bool Update(int id, string name);
+   List<Reservation> GetByPlace(string place);
+   Reservation GetById(int id);
+   bool Create(Reservation input);
+   bool Update(int id, Reservation input);
    bool Delete(int id);
 }

@@ -17,16 +17,16 @@ public class ReservationDomain : IReservationDomain
         throw new NotImplementedException();
     }
 
-    public bool Create(string name)
+    public bool Create(Reservation input)
     {
         //Reglas de negocio
-        if (name.Length != 7) throw new Exception("deben ser 7 caracteres");
-        return _reservationInfraestructure.Create(name);
+        if (input.Placa.Length != 7) throw new Exception("deben ser 7 caracteres");
+        return _reservationInfraestructure.Create(input);
     }
 
-    public bool Update(int id, string name)
+    public bool Update(int id, Reservation reservation)
     {
-        return _reservationInfraestructure.Update(id, name);
+        return _reservationInfraestructure.Update(id, reservation);
     }
 
     public bool Delete(int id)

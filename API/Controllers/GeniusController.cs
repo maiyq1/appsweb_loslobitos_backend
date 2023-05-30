@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Input;
 using Domain;
 using Infraestructure;
 using Infraestructure.Context;
@@ -39,16 +40,42 @@ namespace API.Controllers
 
         // POST (CREATE): api/Genius
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ReservationInput input)
         {
-            _reservationDomain.Create(value);
+            if (ModelState.IsValid)
+            {
+                Reservation reservation = new Reservation()
+                {
+                    Place = input.Place,
+                    Placa = input.Placa,
+                    isPaid = input.isPaid
+                };
+                _reservationDomain.Create(reservation);
+            }
+            else
+            {
+                StatusCode(400);
+            }
         }
 
         // PUT: api/Genius/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] ReservationInput input)
         {
-            _reservationDomain.Update(id, value);
+            if (ModelState.IsValid)
+            {
+                Reservation reservation = new Reservation()
+                {
+                    Place = input.Place,
+                    Placa = input.Placa,
+                    isPaid = input.isPaid
+                };
+                _reservationDomain.Update(id, reservation);
+            }
+            else
+            {
+                StatusCode(400);
+            }
         }
 
         // DELETE: api/Genius/5

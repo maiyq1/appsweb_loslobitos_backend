@@ -4,8 +4,7 @@ namespace Domain;
 
 public interface IReservationDomain
 {
-   List<Reservation> GetAll();
-   bool Create(string name);
-   bool Update(int id, string name);
+   bool Create(Reservation input);
+   bool Update(int id, Reservation input);
    bool Delete(int id);
 }
