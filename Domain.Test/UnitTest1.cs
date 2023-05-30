@@ -55,7 +55,7 @@ public class UnitTest1
         Reservation reservation = new Reservation()
         {
             Place = "Place1",
-            Placa = "1234567",
+            Placa = "1234567", //Poner cantidades distintas de caracteres para validar el test
             isPaid = true
         };
         var mockReservationInfraestructure = new Mock<IReservationInfraestructure>();
