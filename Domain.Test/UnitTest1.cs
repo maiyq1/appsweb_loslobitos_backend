@@ -68,4 +68,26 @@ public class UnitTest1
         //Assert
         Assert.Equal("deben ser 7 caracteres", ex.Message);
     }
+    
+    [Fact]
+        public void Update_ValidReservation_ReturnSuccess() {
+
+        //Arrange
+        Reservation reservation = new Reservation()
+        {
+            Id = 1,
+            Place = "Place1",
+            Placa = "1234567",
+            isPaid = true
+        };
+        var mockReservationInfraestructure = new Mock<IReservationInfraestructure>();
+        mockReservationInfraestructure.Setup(r => r.Update(reservation)).Returns(true);
+        ReservationDomain reservationDomain = new ReservationDomain(mockReservationInfraestructure.Object);
+            
+        //Act
+        var returnValue = reservationDomain.Update(reservation);
+
+        //Assert
+        Assert.True(returnValue);
+     }
 }
