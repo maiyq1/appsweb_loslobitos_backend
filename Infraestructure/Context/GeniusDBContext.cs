@@ -24,7 +24,7 @@ public class GeniusDBContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=FamiliaYenQ01|;Database=geniusdatabase;", serverVersion);
+            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=admin123;Database=Local instance MySQL80;", serverVersion);
         }
     }
     
